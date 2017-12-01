@@ -11,7 +11,8 @@ import static org.junit.Assert.*;
 public class AppTest {
     Thread a1, a2, a3;
 //  NOTE: Commented objects cannot be tested due to incompatible types
-//  string cannot be converted to int)
+//  (string cannot be converted to int) or are otherwise untestable
+//  (see test case table in assignment document)
     JosephusCircle t0a = new Algorithm1(1, 1, 1);
     JosephusCircle t1a = new Algorithm1(30, 40, 50);
     JosephusCircle t2a = new Algorithm1(0, 31, 32);
@@ -30,7 +31,7 @@ public class AppTest {
     JosephusCircle t15a = new Algorithm1(150, 151, Integer.MAX_VALUE + 1);
     //JosephusCircle t16a = new Algorithm1(160, 161, "ga");
     JosephusCircle t17a = new Algorithm1(2, 81, 202);
-    JosephusCircle t18a = new Algorithm1(29, 2, Integer.MAX_VALUE);
+    //JosephusCircle t18a = new Algorithm1(29, 2, Integer.MAX_VALUE);
     //JosephusCircle t19a = new Algorithm1(31, Integer.MAX_VALUE, 2);
     JosephusCircle t20a = new Algorithm1(-2, 90, 92);
     JosephusCircle t21a = new Algorithm1(-101, 32, 233);
@@ -74,7 +75,7 @@ public class AppTest {
     JosephusCircle t15b = new Algorithm2(150, 151, Integer.MAX_VALUE + 1);
     //JosephusCircle t16b = new Algorithm2(160, 161, "ga");
     JosephusCircle t17b = new Algorithm2(2, 81, 202);
-    JosephusCircle t18b = new Algorithm2(29, 2, Integer.MAX_VALUE);
+    //JosephusCircle t18b = new Algorithm2(29, 2, Integer.MAX_VALUE);
     //JosephusCircle t19b = new Algorithm2(31, Integer.MAX_VALUE, 2);
     JosephusCircle t20b = new Algorithm2(-2, 90, 92);
     JosephusCircle t21b = new Algorithm2(-101, 32, 233);
@@ -118,7 +119,7 @@ public class AppTest {
     JosephusCircle t15c = new Algorithm3(150, 151, Integer.MAX_VALUE + 1);
     //JosephusCircle t16c = new Algorithm3(160, 161, "ga");
     JosephusCircle t17c = new Algorithm3(2, 81, 202);
-    JosephusCircle t18c = new Algorithm3(29, 2, Integer.MAX_VALUE);
+    //JosephusCircle t18c = new Algorithm3(29, 2, Integer.MAX_VALUE);
     //JosephusCircle t19c = new Algorithm3(31, Integer.MAX_VALUE, 2);
     JosephusCircle t20c = new Algorithm3(-2, 90, 92);
     JosephusCircle t21c = new Algorithm3(-101, 32, 233);
@@ -156,8 +157,10 @@ public class AppTest {
     public static void tearDownClass() {
     }
 
+    
     @Test
     public void t0() {
+        exp = 1;
         a1 = new Thread(t0a);
         a2 = new Thread(t0b);
         a3 = new Thread(t0c);
@@ -166,8 +169,331 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-        assertEquals(t0a.lastManStanding, 1);
-        assertEquals(t0b.lastManStanding, 1); // This one fails, alg returns 0 instead of 1
-        assertEquals(t0c.lastManStanding, 1);
+        assertEquals(exp, t0a.lastManStanding);
+        assertEquals(exp, t0b.lastManStanding); // Fail: returns 0 instead of 1
+        assertEquals(exp, t0c.lastManStanding);
+    }
+    
+    @Test
+    public void t1() {
+        exp = 27;
+        a1 = new Thread(t1a);
+        a2 = new Thread(t1b);
+        a3 = new Thread(t1c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+        assertEquals(exp, t1a.lastManStanding); 
+        assertEquals(exp, t1b.lastManStanding); // Fail: returns 26 insteal of 27
+        assertEquals(exp, t1c.lastManStanding);
+    }
+    
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void t2() {
+        a1 = new Thread(t2a);
+        a2 = new Thread(t2b);
+        a3 = new Thread(t2c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+        assertEquals(null, t2a.lastManStanding);
+        assertEquals(null, t2b.lastManStanding);
+        assertEquals(null, t2c.lastManStanding);
+    }
+    
+    
+    @Test
+    public void t3() { // error was expected here, but t3a and t3c both return
+                       // '1', with t3b standing out
+        exp = 1;
+        a1 = new Thread(t3a);
+        a2 = new Thread(t3b);
+        a3 = new Thread(t3c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t3a.lastManStanding);
+//        System.out.println(t3b.lastManStanding);
+//        System.out.println(t3c.lastManStanding);
+        
+        assertEquals(exp, t3a.lastManStanding); 
+        assertEquals(exp, t3b.lastManStanding); // Fail: returns 0 instead of 1 
+        assertEquals(exp, t3c.lastManStanding); 
+    }
+    
+    @Test
+    public void t4() { //appears to be an outlier... all 3 algs give different results!
+        a1 = new Thread(t4a);
+        a2 = new Thread(t4b);
+        a3 = new Thread(t4c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t4a.lastManStanding);
+//        System.out.println(t4b.lastManStanding); 
+//        System.out.println(t4c.lastManStanding); 
+        
+        assertEquals(null, t4a.lastManStanding); // returns 37..
+        assertEquals(null, t4b.lastManStanding); // returns 36..
+        assertEquals(null, t4c.lastManStanding); // returns 31..
+    }
+    
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void t5() {
+        a1 = new Thread(t5a);
+        a2 = new Thread(t5b);
+        a3 = new Thread(t5c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t5a.lastManStanding);
+//        System.out.println(t5b.lastManStanding); 
+//        System.out.println(t5c.lastManStanding); 
+        
+        assertEquals(null, t5a.lastManStanding);
+        assertEquals(null, t5b.lastManStanding);
+        assertEquals(null, t5c.lastManStanding);
+    }
+    
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void t7() {
+        a1 = new Thread(t7a);
+        a2 = new Thread(t7b);
+        a3 = new Thread(t7c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t7a.lastManStanding);
+//        System.out.println(t7b.lastManStanding); 
+//        System.out.println(t7c.lastManStanding); 
+        
+        assertEquals(null, t7a.lastManStanding);
+        assertEquals(null, t7b.lastManStanding);
+        assertEquals(null, t7c.lastManStanding);
+    }
+    
+    @Test
+    public void t8() { // error was expected here, but t3a and t3c both return
+                       // '26', with t3b standing out
+        exp = 26;
+        a1 = new Thread(t8a);
+        a2 = new Thread(t8b);
+        a3 = new Thread(t8c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t8a.lastManStanding);
+//        System.out.println(t8b.lastManStanding); 
+//        System.out.println(t8c.lastManStanding); 
+        
+        assertEquals(exp, t8a.lastManStanding);
+        assertEquals(exp, t8b.lastManStanding); // Fail: returns 25 insread of 26
+        assertEquals(exp, t8c.lastManStanding);
+    }
+    
+    @Test
+    public void t9() { //appears to be an outlier... all 3 algs give different results!
+        a1 = new Thread(t9a);
+        a2 = new Thread(t9b);
+        a3 = new Thread(t8c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t9a.lastManStanding); 
+//        System.out.println(t9b.lastManStanding); 
+//        System.out.println(t9c.lastManStanding); 
+        
+        assertEquals(null, t9a.lastManStanding); // returns 20..
+        assertEquals(null, t9b.lastManStanding); // returns 19..
+        assertEquals(null, t9c.lastManStanding); // returns 0..
+    }
+    
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void t10() {
+        a1 = new Thread(t10a);
+        a2 = new Thread(t10b);
+        a3 = new Thread(t10c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+        assertEquals(null, t10a.lastManStanding); 
+        assertEquals(null, t10b.lastManStanding);
+        assertEquals(null, t10c.lastManStanding); 
+    }
+    
+    @Test
+    public void t12() { // error was expected here, but all 3 algs return 0!
+        exp = 0;
+        a1 = new Thread(t12a);
+        a2 = new Thread(t12b);
+        a3 = new Thread(t12c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t12a.lastManStanding); 
+//        System.out.println(t12b.lastManStanding); 
+//        System.out.println(t12c.lastManStanding); 
+        
+        assertEquals(exp, t12a.lastManStanding);
+        assertEquals(exp, t12b.lastManStanding);
+        assertEquals(exp, t12c.lastManStanding);
+    }
+    
+    @Test
+    public void t13() { //appears to be an outlier... all 3 algs give different results!
+        exp = 0;
+        a1 = new Thread(t13a);
+        a2 = new Thread(t13b);
+        a3 = new Thread(t13c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t13a.lastManStanding); 
+//        System.out.println(t13b.lastManStanding); 
+//        System.out.println(t13c.lastManStanding); 
+        
+        assertEquals(exp, t13a.lastManStanding); // returns 119..
+        assertEquals(exp, t13b.lastManStanding); // returns 118..
+        assertEquals(exp, t13c.lastManStanding); // returns 130..
+    }
+    
+    @Test
+    public void t14() { //appears to be an outlier... all 3 algs give different results!
+        a1 = new Thread(t14a);
+        a2 = new Thread(t14b);
+        a3 = new Thread(t14c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t14a.lastManStanding); 
+//        System.out.println(t14b.lastManStanding); 
+//        System.out.println(t14c.lastManStanding); 
+        
+        assertEquals(null, t14a.lastManStanding); // returns 116..
+        assertEquals(null, t14b.lastManStanding); // returns 115..
+        assertEquals(null, t14c.lastManStanding); // returns 140..
+    }
+    
+    @Test
+    public void t15() { // error was expected here, but all 3 algs return 0!
+        exp = 0;
+        a1 = new Thread(t15a);
+        a2 = new Thread(t15b);
+        a3 = new Thread(t15c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t15a.lastManStanding); 
+//        System.out.println(t15b.lastManStanding); 
+//        System.out.println(t15c.lastManStanding); 
+        
+        assertEquals(exp, t15a.lastManStanding); 
+        assertEquals(exp, t15b.lastManStanding); 
+        assertEquals(exp, t15c.lastManStanding); 
+    }
+    
+    @Test
+    public void t17() {
+        exp = 2;
+        a1 = new Thread(t17a);
+        a2 = new Thread(t17b);
+        a3 = new Thread(t17c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t17a.lastManStanding); 
+//        System.out.println(t17b.lastManStanding); 
+//        System.out.println(t17c.lastManStanding); 
+        
+        assertEquals(exp, t17a.lastManStanding); 
+        assertEquals(exp, t17b.lastManStanding); // Fail: returns 1 instead of 2
+        assertEquals(exp, t17c.lastManStanding); 
+    }
+    
+    @Test
+    public void t20() { // error was expected here, but t3a and t3c both return
+                       // '1', with t3b standing out
+        exp = 1;
+        a1 = new Thread(t20a);
+        a2 = new Thread(t20b);
+        a3 = new Thread(t20c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t20a.lastManStanding); 
+//        System.out.println(t20b.lastManStanding); 
+//        System.out.println(t20c.lastManStanding); 
+        
+        assertEquals(1, t20a.lastManStanding); 
+        assertEquals(1, t20b.lastManStanding); // Fail: returns 0 instead of 1
+        assertEquals(1, t20c.lastManStanding); 
+    }
+    
+    @Test
+    public void t21() { //appears to be an outlier... all 3 algs give different results!
+        a1 = new Thread(t21a);
+        a2 = new Thread(t21b);
+        a3 = new Thread(t21c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t21a.lastManStanding); 
+//        System.out.println(t21b.lastManStanding); 
+//        System.out.println(t21c.lastManStanding); 
+        
+        assertEquals(null, t21a.lastManStanding); // returns 68..
+        assertEquals(null, t21b.lastManStanding); // returns 67..
+        assertEquals(null, t21c.lastManStanding); // returns 70..
+    }
+    
+     @Test
+    public void t22() { //appears to be an outlier... all 3 algs give different results!
+        a1 = new Thread(t22a);
+        a2 = new Thread(t22b);
+        a3 = new Thread(t22c);
+        
+        a1.run();
+	a2.run();
+        a3.run();
+        
+//        System.out.println(t22a.lastManStanding); 
+//        System.out.println(t22b.lastManStanding); 
+//        System.out.println(t22c.lastManStanding); 
+        
+        assertEquals(null, t22a.lastManStanding); // returns 26..
+        assertEquals(null, t22b.lastManStanding); // returns 24..
+        assertEquals(null, t22c.lastManStanding); // returns 76..
     }
 }
