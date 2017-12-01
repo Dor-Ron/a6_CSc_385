@@ -166,8 +166,8 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-        assertEquals(t0a.algorithm(), 1);
-        assertEquals(t0b.algorithm(), 1); // This one fails, alg returns 0 instead of 1
-        assertEquals(t0c.algorithm(), 1);
+        assertEquals(t0a.lastManStanding, 1);
+        assertEquals(t0b.lastManStanding, 1); // This one fails, alg returns 0 instead of 1
+        assertEquals(t0c.lastManStanding, 1);
     }
 }
