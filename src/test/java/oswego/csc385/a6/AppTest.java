@@ -9,9 +9,10 @@ import static org.junit.Assert.*;
  * Unit test for simple App.
  */
 public class AppTest {
+    int exp;
     Thread a1, a2, a3;
 //  NOTE: Commented objects cannot be tested due to incompatible types
-//  (string cannot be converted to int) or are otherwise untestable
+//  (string cannot be converted to int)
 //  (see test case table in assignment document)
     JosephusCircle t0a = new Algorithm1(1, 1, 1);
     JosephusCircle t1a = new Algorithm1(30, 40, 50);
@@ -28,7 +29,7 @@ public class AppTest {
     JosephusCircle t12a = new Algorithm1(120, 121, 0);
     JosephusCircle t13a = new Algorithm1(130, 131, -1);
     JosephusCircle t14a = new Algorithm1(140, 141, -80);
-    JosephusCircle t15a = new Algorithm1(150, 151, Integer.MAX_VALUE + 1);
+    JosephusCircle t15a = new Algorithm1(150, 151, Integer.MAX_VALUE+1);
     //JosephusCircle t16a = new Algorithm1(160, 161, "ga");
     JosephusCircle t17a = new Algorithm1(2, 81, 202);
     //JosephusCircle t18a = new Algorithm1(29, 2, Integer.MAX_VALUE);
@@ -148,16 +149,6 @@ public class AppTest {
     public AppTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-        
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    
     @Test
     public void t0() {
         exp = 1;
@@ -169,13 +160,17 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-        assertEquals(exp, t0a.lastManStanding);
-        assertEquals(exp, t0b.lastManStanding); // Fail: returns 0 instead of 1
-        assertEquals(exp, t0c.lastManStanding);
+//        System.out.println(t0a.algorithm());
+//        System.out.println(t0b.algorithm());
+//        System.out.println(t0c.algorithm());
+        
+        assertEquals(exp, t0a.algorithm());
+        assertEquals(exp, t0b.algorithm()); // Fail: returns 0 instead of 1
+        assertEquals(exp, t0c.algorithm());
     }
     
     @Test
-    public void t1() {
+    public void t1() { //expected 27... all 3 algs give different results!
         exp = 27;
         a1 = new Thread(t1a);
         a2 = new Thread(t1b);
@@ -184,10 +179,14 @@ public class AppTest {
         a1.run();
 	a2.run();
         a3.run();
+       
+        System.out.println(t1a.algorithm());
+        System.out.println(t1b.algorithm());
+        System.out.println(t1c.algorithm());
         
-        assertEquals(exp, t1a.lastManStanding); 
-        assertEquals(exp, t1b.lastManStanding); // Fail: returns 26 insteal of 27
-        assertEquals(exp, t1c.lastManStanding);
+        assertEquals(exp, t1a.algorithm()); // returns 27..
+        assertEquals(exp, t1b.algorithm()); // returns 26..
+        assertEquals(exp, t1c.algorithm()); // returns 21..
     }
     
     @Test(expected=IndexOutOfBoundsException.class)
@@ -200,9 +199,9 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-        assertEquals(null, t2a.lastManStanding);
-        assertEquals(null, t2b.lastManStanding);
-        assertEquals(null, t2c.lastManStanding);
+        assertEquals(null, t2a.algorithm());
+        assertEquals(null, t2b.algorithm());
+        assertEquals(null, t2c.algorithm());
     }
     
     
@@ -222,13 +221,13 @@ public class AppTest {
 //        System.out.println(t3b.lastManStanding);
 //        System.out.println(t3c.lastManStanding);
         
-        assertEquals(exp, t3a.lastManStanding); 
-        assertEquals(exp, t3b.lastManStanding); // Fail: returns 0 instead of 1 
-        assertEquals(exp, t3c.lastManStanding); 
+        assertEquals(exp, t3a.algorithm()); 
+        assertEquals(exp, t3b.algorithm()); // Fail: returns 0 instead of 1 
+        assertEquals(exp, t3c.algorithm()); 
     }
     
     @Test
-    public void t4() { //appears to be an outlier... all 3 algs give different results!
+    public void t4() { //expected an error... all 3 algs give different results!
         a1 = new Thread(t4a);
         a2 = new Thread(t4b);
         a3 = new Thread(t4c);
@@ -241,9 +240,9 @@ public class AppTest {
 //        System.out.println(t4b.lastManStanding); 
 //        System.out.println(t4c.lastManStanding); 
         
-        assertEquals(null, t4a.lastManStanding); // returns 37..
-        assertEquals(null, t4b.lastManStanding); // returns 36..
-        assertEquals(null, t4c.lastManStanding); // returns 31..
+        assertEquals(null, t4a.algorithm()); // returns 37..
+        assertEquals(null, t4b.algorithm()); // returns 36..
+        assertEquals(null, t4c.algorithm()); // returns 31..
     }
     
     @Test(expected=IndexOutOfBoundsException.class)
@@ -256,13 +255,13 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t5a.lastManStanding);
-//        System.out.println(t5b.lastManStanding); 
-//        System.out.println(t5c.lastManStanding); 
+//        System.out.println(t5a.algorithm());
+//        System.out.println(t5b.algorithm()); 
+//        System.out.println(t5c.algorithm()); 
         
-        assertEquals(null, t5a.lastManStanding);
-        assertEquals(null, t5b.lastManStanding);
-        assertEquals(null, t5c.lastManStanding);
+        assertEquals(null, t5a.algorithm());
+        assertEquals(null, t5b.algorithm());
+        assertEquals(null, t5c.algorithm());
     }
     
     @Test(expected=IndexOutOfBoundsException.class)
@@ -275,13 +274,13 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t7a.lastManStanding);
-//        System.out.println(t7b.lastManStanding); 
-//        System.out.println(t7c.lastManStanding); 
+//        System.out.println(t7a.algorithm());
+//        System.out.println(t7b.algorithm()); 
+//        System.out.println(t7c.algorithm()); 
         
-        assertEquals(null, t7a.lastManStanding);
-        assertEquals(null, t7b.lastManStanding);
-        assertEquals(null, t7c.lastManStanding);
+        assertEquals(null, t7a.algorithm());
+        assertEquals(null, t7b.algorithm());
+        assertEquals(null, t7c.algorithm());
     }
     
     @Test
@@ -296,17 +295,17 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t8a.lastManStanding);
-//        System.out.println(t8b.lastManStanding); 
-//        System.out.println(t8c.lastManStanding); 
+//        System.out.println(t8a.algorithm());
+//        System.out.println(t8b.algorithm()); 
+//        System.out.println(t8c.algorithm()); 
         
-        assertEquals(exp, t8a.lastManStanding);
-        assertEquals(exp, t8b.lastManStanding); // Fail: returns 25 insread of 26
-        assertEquals(exp, t8c.lastManStanding);
+        assertEquals(exp, t8a.algorithm());
+        assertEquals(exp, t8b.algorithm()); // Fail: returns 25 instead of 26
+        assertEquals(exp, t8c.algorithm());
     }
     
     @Test
-    public void t9() { //appears to be an outlier... all 3 algs give different results!
+    public void t9() { //expected an error... all 3 algs give different results!
         a1 = new Thread(t9a);
         a2 = new Thread(t9b);
         a3 = new Thread(t8c);
@@ -315,13 +314,13 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t9a.lastManStanding); 
-//        System.out.println(t9b.lastManStanding); 
-//        System.out.println(t9c.lastManStanding); 
+//        System.out.println(t9a.algorithm()); 
+//        System.out.println(t9b.algorithm()); 
+//        System.out.println(t9c.algorithm()); 
         
-        assertEquals(null, t9a.lastManStanding); // returns 20..
-        assertEquals(null, t9b.lastManStanding); // returns 19..
-        assertEquals(null, t9c.lastManStanding); // returns 0..
+        assertEquals(null, t9a.algorithm()); // returns 20..
+        assertEquals(null, t9b.algorithm()); // returns 19..
+        assertEquals(null, t9c.algorithm()); // returns 0..
     }
     
     @Test(expected=IndexOutOfBoundsException.class)
@@ -334,13 +333,13 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-        assertEquals(null, t10a.lastManStanding); 
-        assertEquals(null, t10b.lastManStanding);
-        assertEquals(null, t10c.lastManStanding); 
+        assertEquals(null, t10a.algorithm()); 
+        assertEquals(null, t10b.algorithm());
+        assertEquals(null, t10c.algorithm()); 
     }
     
     @Test
-    public void t12() { // error was expected here, but all 3 algs return 0!
+    public void t12() { // expected an error... all 3 algs give different results!
         exp = 0;
         a1 = new Thread(t12a);
         a2 = new Thread(t12b);
@@ -350,17 +349,17 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t12a.lastManStanding); 
-//        System.out.println(t12b.lastManStanding); 
-//        System.out.println(t12c.lastManStanding); 
+//        System.out.println(t12a.algorithm()); 
+//        System.out.println(t12b.algorithm()); 
+//        System.out.println(t12c.algorithm());
         
-        assertEquals(exp, t12a.lastManStanding);
-        assertEquals(exp, t12b.lastManStanding);
-        assertEquals(exp, t12c.lastManStanding);
+        assertEquals(exp, t12a.algorithm()); // returns 80..
+        assertEquals(exp, t12b.algorithm()); // returns 79..
+        assertEquals(exp, t12c.algorithm()); // returns 120..
     }
     
     @Test
-    public void t13() { //appears to be an outlier... all 3 algs give different results!
+    public void t13() { //expected an error... all 3 algs give different results!
         exp = 0;
         a1 = new Thread(t13a);
         a2 = new Thread(t13b);
@@ -370,17 +369,17 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t13a.lastManStanding); 
-//        System.out.println(t13b.lastManStanding); 
-//        System.out.println(t13c.lastManStanding); 
+//        System.out.println(t13a.algorithm()); 
+//        System.out.println(t13b.algorithm()); 
+//        System.out.println(t13c.algorithm()); 
         
-        assertEquals(exp, t13a.lastManStanding); // returns 119..
-        assertEquals(exp, t13b.lastManStanding); // returns 118..
-        assertEquals(exp, t13c.lastManStanding); // returns 130..
+        assertEquals(exp, t13a.algorithm()); // returns 119..
+        assertEquals(exp, t13b.algorithm()); // returns 118..
+        assertEquals(exp, t13c.algorithm()); // returns 130..
     }
     
     @Test
-    public void t14() { //appears to be an outlier... all 3 algs give different results!
+    public void t14() { //expected an error... all 3 algs give different results!
         a1 = new Thread(t14a);
         a2 = new Thread(t14b);
         a3 = new Thread(t14c);
@@ -389,17 +388,17 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t14a.lastManStanding); 
-//        System.out.println(t14b.lastManStanding); 
-//        System.out.println(t14c.lastManStanding); 
+//        System.out.println(t14a.algorithm()); 
+//        System.out.println(t14b.algorithm()); 
+//        System.out.println(t14c.algorithm()); 
         
-        assertEquals(null, t14a.lastManStanding); // returns 116..
-        assertEquals(null, t14b.lastManStanding); // returns 115..
-        assertEquals(null, t14c.lastManStanding); // returns 140..
+        assertEquals(null, t14a.algorithm()); // returns 116..
+        assertEquals(null, t14b.algorithm()); // returns 115..
+        assertEquals(null, t14c.algorithm()); // returns 140..
     }
     
     @Test
-    public void t15() { // error was expected here, but all 3 algs return 0!
+    public void t15() { //expected an error... all 3 algs give different results!
         exp = 0;
         a1 = new Thread(t15a);
         a2 = new Thread(t15b);
@@ -409,13 +408,13 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t15a.lastManStanding); 
-//        System.out.println(t15b.lastManStanding); 
-//        System.out.println(t15c.lastManStanding); 
+//        System.out.println(t15a.algorithm()); 
+//        System.out.println(t15b.algorithm()); 
+//        System.out.println(t15c.algorithm()); 
         
-        assertEquals(exp, t15a.lastManStanding); 
-        assertEquals(exp, t15b.lastManStanding); 
-        assertEquals(exp, t15c.lastManStanding); 
+        assertEquals(exp, t15a.algorithm()); // returns 51..
+        assertEquals(exp, t15b.algorithm()); // returns 50..
+        assertEquals(exp, t15c.algorithm()); // returns 150..
     }
     
     @Test
@@ -429,13 +428,13 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t17a.lastManStanding); 
-//        System.out.println(t17b.lastManStanding); 
-//        System.out.println(t17c.lastManStanding); 
+//        System.out.println(t17a.algorithm()); 
+//        System.out.println(t17b.algorithm()); 
+//        System.out.println(t17c.algorithm()); 
         
-        assertEquals(exp, t17a.lastManStanding); 
-        assertEquals(exp, t17b.lastManStanding); // Fail: returns 1 instead of 2
-        assertEquals(exp, t17c.lastManStanding); 
+        assertEquals(exp, t17a.algorithm()); 
+        assertEquals(exp, t17b.algorithm()); // Fail: returns 1 instead of 2
+        assertEquals(exp, t17c.algorithm()); 
     }
     
     @Test
@@ -450,13 +449,13 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t20a.lastManStanding); 
-//        System.out.println(t20b.lastManStanding); 
-//        System.out.println(t20c.lastManStanding); 
+//        System.out.println(t20a.algorithm()); 
+//        System.out.println(t20b.algorithm()); 
+//        System.out.println(t20c.algorithm()); 
         
-        assertEquals(1, t20a.lastManStanding); 
-        assertEquals(1, t20b.lastManStanding); // Fail: returns 0 instead of 1
-        assertEquals(1, t20c.lastManStanding); 
+        assertEquals(1, t20a.algorithm()); 
+        assertEquals(1, t20b.algorithm()); // Fail: returns 0 instead of 1
+        assertEquals(1, t20c.algorithm()); 
     }
     
     @Test
@@ -469,13 +468,13 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t21a.lastManStanding); 
-//        System.out.println(t21b.lastManStanding); 
-//        System.out.println(t21c.lastManStanding); 
+//        System.out.println(t21a.algorithm()); 
+//        System.out.println(t21b.algorithm()); 
+//        System.out.println(t21c.algorithm()); 
         
-        assertEquals(null, t21a.lastManStanding); // returns 68..
-        assertEquals(null, t21b.lastManStanding); // returns 67..
-        assertEquals(null, t21c.lastManStanding); // returns 70..
+        assertEquals(null, t21a.algorithm()); // returns 68..
+        assertEquals(null, t21b.algorithm()); // returns 67..
+        assertEquals(null, t21c.algorithm()); // returns 70..
     }
     
      @Test
@@ -488,12 +487,12 @@ public class AppTest {
 	a2.run();
         a3.run();
         
-//        System.out.println(t22a.lastManStanding); 
-//        System.out.println(t22b.lastManStanding); 
-//        System.out.println(t22c.lastManStanding); 
+//        System.out.println(t22a.algorithm()); 
+//        System.out.println(t22b.algorithm()); 
+//        System.out.println(t22c.algorithm()); 
         
-        assertEquals(null, t22a.lastManStanding); // returns 26..
-        assertEquals(null, t22b.lastManStanding); // returns 24..
-        assertEquals(null, t22c.lastManStanding); // returns 76..
+        assertEquals(null, t22a.algorithm()); // returns 25..
+        assertEquals(null, t22b.algorithm()); // returns 24..
+        assertEquals(null, t22c.algorithm()); // returns 76..
     }
 }
