@@ -157,7 +157,7 @@ public class AppTest {
         a3 = new Thread(t0c);
         
         a1.run();
-	a2.run();
+	    a2.run();
         a3.run();
         
 //        System.out.println(t0a.algorithm());
@@ -177,12 +177,12 @@ public class AppTest {
         a3 = new Thread(t1c);
         
         a1.run();
-	a2.run();
+        a2.run();
         a3.run();
        
-        System.out.println(t1a.algorithm());
-        System.out.println(t1b.algorithm());
-        System.out.println(t1c.algorithm());
+        // System.out.println(t1a.algorithm());
+        // System.out.println(t1b.algorithm());
+        // System.out.println(t1c.algorithm());
         
         assertEquals(exp, t1a.algorithm()); // returns 27..
         assertEquals(exp, t1b.algorithm()); // returns 26..
@@ -196,7 +196,7 @@ public class AppTest {
         a3 = new Thread(t2c);
         
         a1.run();
-	a2.run();
+	    a2.run();
         a3.run();
         
         assertEquals(null, t2a.algorithm());
@@ -214,7 +214,7 @@ public class AppTest {
         a3 = new Thread(t3c);
         
         a1.run();
-	a2.run();
+        a2.run();
         a3.run();
         
 //        System.out.println(t3a.lastManStanding);
@@ -233,7 +233,7 @@ public class AppTest {
         a3 = new Thread(t4c);
         
         a1.run();
-	a2.run();
+        a2.run();
         a3.run();
         
 //        System.out.println(t4a.lastManStanding);
@@ -252,7 +252,7 @@ public class AppTest {
         a3 = new Thread(t5c);
         
         a1.run();
-	a2.run();
+        a2.run();
         a3.run();
         
 //        System.out.println(t5a.algorithm());
@@ -271,7 +271,7 @@ public class AppTest {
         a3 = new Thread(t7c);
         
         a1.run();
-	a2.run();
+        a2.run();
         a3.run();
         
 //        System.out.println(t7a.algorithm());
@@ -292,7 +292,7 @@ public class AppTest {
         a3 = new Thread(t8c);
         
         a1.run();
-	a2.run();
+        a2.run();
         a3.run();
         
 //        System.out.println(t8a.algorithm());
@@ -308,10 +308,10 @@ public class AppTest {
     public void t9() { //expected an error... all 3 algs give different results!
         a1 = new Thread(t9a);
         a2 = new Thread(t9b);
-        a3 = new Thread(t8c);
+        a3 = new Thread(t9c);
         
         a1.run();
-	a2.run();
+        a2.run();
         a3.run();
         
 //        System.out.println(t9a.algorithm()); 
@@ -330,7 +330,7 @@ public class AppTest {
         a3 = new Thread(t10c);
         
         a1.run();
-	a2.run();
+        a2.run();
         a3.run();
         
         assertEquals(null, t10a.algorithm()); 
@@ -346,7 +346,7 @@ public class AppTest {
         a3 = new Thread(t12c);
         
         a1.run();
-	a2.run();
+	    a2.run();
         a3.run();
         
 //        System.out.println(t12a.algorithm()); 
@@ -366,7 +366,7 @@ public class AppTest {
         a3 = new Thread(t13c);
         
         a1.run();
-	a2.run();
+	    a2.run();
         a3.run();
         
 //        System.out.println(t13a.algorithm()); 
@@ -385,7 +385,7 @@ public class AppTest {
         a3 = new Thread(t14c);
         
         a1.run();
-	a2.run();
+	    a2.run();
         a3.run();
         
 //        System.out.println(t14a.algorithm()); 
@@ -405,7 +405,7 @@ public class AppTest {
         a3 = new Thread(t15c);
         
         a1.run();
-	a2.run();
+	    a2.run();
         a3.run();
         
 //        System.out.println(t15a.algorithm()); 
@@ -425,7 +425,7 @@ public class AppTest {
         a3 = new Thread(t17c);
         
         a1.run();
-	a2.run();
+	    a2.run();
         a3.run();
         
 //        System.out.println(t17a.algorithm()); 
@@ -446,7 +446,7 @@ public class AppTest {
         a3 = new Thread(t20c);
         
         a1.run();
-	a2.run();
+	    a2.run();
         a3.run();
         
 //        System.out.println(t20a.algorithm()); 
@@ -465,7 +465,7 @@ public class AppTest {
         a3 = new Thread(t21c);
         
         a1.run();
-	a2.run();
+	    a2.run();
         a3.run();
         
 //        System.out.println(t21a.algorithm()); 
@@ -484,7 +484,7 @@ public class AppTest {
         a3 = new Thread(t22c);
         
         a1.run();
-	a2.run();
+        a2.run();
         a3.run();
         
 //        System.out.println(t22a.algorithm()); 
@@ -495,4 +495,261 @@ public class AppTest {
         assertEquals(null, t22b.algorithm()); // returns 24..
         assertEquals(null, t22c.algorithm()); // returns 76..
     }
+
+////////////////////////////////////////////
+
+    // @Test
+    // public void t24() { //expected an error... all 3 algs give different results!
+    //     exp = 0;
+    //     a1 = new Thread(t24a);
+    //     a2 = new Thread(t24b);
+    //     a3 = new Thread(t24c);
+        
+    //     a1.run();
+    //     a2.run();
+    //     a3.run();
+        
+    //     // System.out.println(t24a.algorithm()); 
+    //     // System.out.println(t24b.algorithm()); 
+    //     // System.out.println(t24c.algorithm()); 
+        
+    //     assertEquals(exp, t24a.algorithm()); // returns 27..
+    //     assertEquals(exp, t24b.algorithm()); // returns 26..
+    //     assertEquals(exp, t24c.algorithm()); // returns 21..
+    // }    
+
+    @Test
+    public void t27() { //expected an error... all 3 algs give different results!
+        a1 = new Thread(t27a);
+        a2 = new Thread(t27b);
+        a3 = new Thread(t27c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+    //    System.out.println(t27a.algorithm()); 
+    //    System.out.println(t27b.algorithm()); 
+    //    System.out.println(t27c.algorithm()); 
+        
+        assertEquals(null, t27a.algorithm()); // returns 7..
+        assertEquals(null, t27b.algorithm()); // returns 6..
+        assertEquals(null, t27c.algorithm()); // returns 10..
+    }
+
+    @Test
+    public void t28() { //expected an error... all 3 algs give different results!
+        a1 = new Thread(t28a);
+        a2 = new Thread(t28b);
+        a3 = new Thread(t28c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+    //    System.out.println(t28a.algorithm()); 
+    //    System.out.println(t28b.algorithm()); 
+    //    System.out.println(t28c.algorithm()); 
+        
+        assertEquals(null, t28a.algorithm()); // returns 19..
+        assertEquals(null, t28b.algorithm()); // returns 18..
+        assertEquals(null, t28c.algorithm()); // returns 20..
+    }
+
+    @Test
+    public void t29() { //expected an error... all 3 algs give different results!
+        a1 = new Thread(t29a);
+        a2 = new Thread(t29b);
+        a3 = new Thread(t29c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+    //    System.out.println(t29a.algorithm()); 
+    //    System.out.println(t29b.algorithm()); 
+    //    System.out.println(t29c.algorithm()); 
+        
+        assertEquals(null, t29a.algorithm()); // returns 13..
+        assertEquals(null, t29b.algorithm()); // returns 12..
+        assertEquals(null, t29c.algorithm()); // returns 4..
+    }
+
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void t30() { //expected an error... all 3 algs give different results!
+        exp = 0;
+        a1 = new Thread(t30a);
+        a2 = new Thread(t30b);
+        a3 = new Thread(t30c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+        // System.out.println(t30a.algorithm()); 
+        // System.out.println(t30b.algorithm()); 
+        // System.out.println(t30c.algorithm()); 
+        
+        assertEquals(exp, t30a.algorithm()); // returns 7..
+        assertEquals(exp, t30b.algorithm()); // returns 19..
+        assertEquals(exp, t30c.algorithm()); // returns 13..
+    }   
+
+    @Test
+    public void t33() { //expected 11... all 3 algs give different results!
+        exp = 11;
+        a1 = new Thread(t33a);
+        a2 = new Thread(t33b);
+        a3 = new Thread(t33c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+        // System.out.println(t33a.algorithm());
+        // System.out.println(t33b.algorithm());
+        // System.out.println(t33c.algorithm());
+        
+        assertEquals(exp, t33a.algorithm()); // returns 11..
+        assertEquals(exp, t33b.algorithm()); // returns 10..
+        assertEquals(exp, t33c.algorithm()); // returns 2..
+    }
+
+    @Test
+    public void t34() { //expected 11... all 3 algs give different results!
+        exp = 2;
+        a1 = new Thread(t34a);
+        a2 = new Thread(t34b);
+        a3 = new Thread(t34c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+        // System.out.println(t34a.algorithm());
+        // System.out.println(t34b.algorithm());
+        // System.out.println(t34c.algorithm());
+        
+        assertEquals(exp, t34a.algorithm()); // returns 2..
+        assertEquals(exp, t34b.algorithm()); // returns 1..
+        assertEquals(exp, t34c.algorithm()); // returns 10..
+    }
+
+    @Test
+    public void t35() { //expected 11... all 3 algs give different results!
+        exp = 5;
+        a1 = new Thread(t35a);
+        a2 = new Thread(t35b);
+        a3 = new Thread(t35c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+        // System.out.println(t35a.algorithm());
+        // System.out.println(t35b.algorithm());
+        // System.out.println(t35c.algorithm());
+        
+        assertEquals(exp, t35a.algorithm()); // returns 5..
+        assertEquals(exp, t35b.algorithm()); // returns 4..
+        assertEquals(exp, t35c.algorithm()); // returns 11..
+    }
+
+    @Test
+    public void t36() { //expected 11... all 3 algs give different results!
+        exp = 22;
+        a1 = new Thread(t36a);
+        a2 = new Thread(t36b);
+        a3 = new Thread(t36c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+        // System.out.println(t36a.algorithm());
+        // System.out.println(t36b.algorithm());
+        // System.out.println(t36c.algorithm());
+        
+        assertEquals(exp, t36a.algorithm()); // returns 22..
+        assertEquals(exp, t36b.algorithm()); // returns 21..
+        assertEquals(exp, t36c.algorithm()); // returns 4..
+    }
+
+    @Test
+    public void t37() { //expected an error... all 3 algs give different results!
+        a1 = new Thread(t37a);
+        a2 = new Thread(t37b);
+        a3 = new Thread(t37c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+    //    System.out.println(t37a.algorithm()); 
+    //    System.out.println(t37b.algorithm()); 
+    //    System.out.println(t37c.algorithm()); 
+        
+        assertEquals(null, t37a.algorithm()); // returns 16..
+        assertEquals(null, t37b.algorithm()); // returns 15..
+        assertEquals(null, t37c.algorithm()); // returns 13..
+    }
+
+    @Test
+    public void t38() { //expected an error... all 3 algs give different results!
+        a1 = new Thread(t38a);
+        a2 = new Thread(t38b);
+        a3 = new Thread(t38c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+    //    System.out.println(t38a.algorithm()); 
+    //    System.out.println(t38b.algorithm()); 
+    //    System.out.println(t38c.algorithm()); 
+        
+        assertEquals(null, t38a.algorithm()); // returns 1059..
+        assertEquals(null, t38b.algorithm()); // returns 1058..
+        assertEquals(null, t38c.algorithm()); // returns 7602..
+    }
+
+    @Test
+    public void t39() { //expected an error... all 3 algs give different results!
+        a1 = new Thread(t39a);
+        a2 = new Thread(t39b);
+        a3 = new Thread(t39c);
+        
+        a1.run();
+        a2.run();
+        a3.run();
+        
+    //    System.out.println(t39a.algorithm()); 
+    //    System.out.println(t39b.algorithm()); 
+    //    System.out.println(t39c.algorithm()); 
+        
+        assertEquals(null, t39a.algorithm()); // returns 24..
+        assertEquals(null, t39b.algorithm()); // returns 23..
+        assertEquals(null, t39c.algorithm()); // returns 85..
+    }
+
+    // @Test
+    // public void t40() { //expected an error... all 3 algs give different results!
+    //     exp = 0;
+    //     a1 = new Thread(t40a);
+    //     a2 = new Thread(t40b);
+    //     a3 = new Thread(t40c);
+        
+    //     a1.run();
+    //     a2.run();
+    //     a3.run();
+        
+    //     System.out.println(t40a.algorithm()); 
+    //     System.out.println(t40b.algorithm()); 
+    //     System.out.println(t40c.algorithm()); 
+        
+    //     assertEquals(exp, t40a.algorithm()); // returns ..
+    //     assertEquals(exp, t40b.algorithm()); // returns ..
+    //     assertEquals(exp, t40c.algorithm()); // returns ..
+    // }   
 }
+
